@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UsuarioChallenge.Data;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<CadastroService, CadastroService>();
 builder.Services.AddScoped<LoginService, LoginService>();
 builder.Services.AddScoped<TokenService, TokenService>();
 builder.Services.AddScoped<LogoutService, LogoutService>();
+
 
 
 var app = builder.Build();

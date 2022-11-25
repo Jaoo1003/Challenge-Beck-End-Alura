@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UsuarioChallenge.Data;
 
@@ -10,9 +11,10 @@ using UsuarioChallenge.Data;
 namespace UsuarioChallenge.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221123225453_adicionando roles")]
+    partial class adicionandoroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +51,8 @@ namespace UsuarioChallenge.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "431564bf-f8f0-4043-be67-53b6723f575b",
-                            Name = "authorizeduser",
+                            ConcurrencyStamp = "ddc80bc2-069f-4781-bc7c-d5799b41cd0e",
+                            Name = "AuthorizedUser",
                             NormalizedName = "AUTHORIZEDUSER"
                         });
                 });

@@ -2,6 +2,7 @@
 using ChallengeAlura.Models;
 using ChallengeAlura.Services;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 
@@ -17,6 +18,7 @@ namespace ChallengeAlura.Controllers {
         }
 
         [HttpGet]
+        [Authorize(Roles = "authorizeduser")]
         public IActionResult BuscaCategoria() {
             List<ReadCategoriaDto> readDto = _categoriaService.BuscaCategoria();
             if (readDto != null) return Ok(readDto);
@@ -24,6 +26,7 @@ namespace ChallengeAlura.Controllers {
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "authorizeduser")]
         public IActionResult BuscaCategoriaPorId(int id) {
             ReadCategoriaDto readDto = _categoriaService.BuscaCategoriaPorId(id);
             if (readDto != null) return Ok(readDto);
@@ -31,12 +34,14 @@ namespace ChallengeAlura.Controllers {
         }
 
         [HttpPost]
+        [Authorize(Roles = "authorizeduser")]
         public IActionResult AdicionaCategoria(CreateCategoriaDto createDto) {
             ReadCategoriaDto readDto = _categoriaService.AdicionaCategoria(createDto);
             return CreatedAtAction(nameof(BuscaCategoriaPorId), new { id = readDto.Id }, readDto);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "authorizeduser")]
         public IActionResult AtualizaCategoria(int id, UpdateCategoriaDto updateDto) {
             Result resultado = _categoriaService.AtualizaCategoria(id, updateDto);
             if (resultado != null) return NoContent();
@@ -44,6 +49,7 @@ namespace ChallengeAlura.Controllers {
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "authorizeduser")]
         public ActionResult DeletaCategoria(int id) {
             Result resultado = _categoriaService.DeletaCategoria(id);
             if (resultado.IsSuccess) return NoContent();
